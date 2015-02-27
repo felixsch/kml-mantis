@@ -2,6 +2,7 @@
 #include <linux/init.h>
 #include <linux/kallsyms.h>
 #include <linux/utsname.h>
+#include <linux/slab.h>
 
 #include "mantis.h"
 #include "hijack.h"
@@ -73,6 +74,8 @@ static int __init bd_init(void) {
 static void __exit bd_release(void) {
 
     ksym_unhook(hook_uname);
+
+    kfree(hook_uname);
 
 }
 
